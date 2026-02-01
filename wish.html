@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 450px;
+        }
+
+        h1 {
+            font-size: 2.4em;
+            margin-bottom: 15px;
+        }
+
+        .photos {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .photos img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 3px solid #fff;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            font-size: 1em;
+            border: none;
+            border-radius: 25px;
+            background: #ff4081;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #e91e63;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>🎉 Happy Birthday! 🎂</h1>
+
+    <div class="photos">
+        <img src="photo.jpg" alt="Friend Pic 1">
+        <img src="photo2.jpeg" alt="Friend Pic 2">
+    </div>
+
+    <p>
+        Wishing you a day filled with love, laughter,  
+        and endless happiness 💖
+    </p>
+
+    <button onclick="startPlaylist()">▶ Play Birthday Songs</button>
+    <button onclick="showMessage()">🎁 Surprise Message</button>
+
+    <p id="surprise" class="hidden">
+        Happy Birthday MR.Charm <br>Thanks For Comming into my Life‪‪❤︎‬
+
+    </p>
+</div>
+
+<!-- Single audio player -->
+<audio id="player"></audio>
+
+<script>
+    const songs = [
+        "audio1.aac",
+        "audio2.mpeg"
+    ];
+
+    let currentSong = 0;
+    const player = document.getElementById("player");
+
+    function startPlaylist() {
+        player.src = songs[currentSong];
+        player.play();
+    }
+
+    // When one song ends, play next
+    player.addEventListener("ended", () => {
+        currentSong = (currentSong + 1) % songs.length;
+        player.src = songs[currentSong];
+        player.play();
+    });
+
+    function showMessage() {
+        document.getElementById("surprise").classList.remove("hidden");
+    }
+</script>
+
+</body>
+</html>
